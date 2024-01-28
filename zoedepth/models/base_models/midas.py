@@ -269,6 +269,8 @@ class MidasCore(nn.Module):
             # print("Input size to Midascore", x.shape)
             rel_depth = self.core(x)
             print("Output from midas shape", rel_depth.shape)
+            print("First values of midas output", rel_depth[0,:3,:3])
+
             if not self.fetch_features:
                 return rel_depth
         out = [self.core_out[k] for k in self.layer_names]
