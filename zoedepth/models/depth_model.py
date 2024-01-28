@@ -88,6 +88,18 @@ class DepthModel(nn.Module):
 
         print("Shape of actual input:", x.shape)
 
+        torch.save(x, "zoedepth_pixel_values.pt")
+
+        # push to HF hub
+        from huggingface_hub import HfApi
+        api = HfApi()
+        api.upload_file(
+            path_or_fileobj="zoedepth_pixel_values.pt",
+            path_in_repo="zoedepth_pixel_values.pt",
+            repo_id="nielsr/test-image",
+            repo_type="dataset",
+        )
+
         out = self._infer(x)
         if out.shape[-2:] != x.shape[-2:]:
             out = F.interpolate(out, size=(x.shape[2], x.shape[3]), mode=upsampling_mode, align_corners=False)
