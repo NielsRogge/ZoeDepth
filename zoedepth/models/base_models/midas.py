@@ -270,6 +270,7 @@ class MidasCore(nn.Module):
             rel_depth = self.core(x)
             print("Output from midas shape", rel_depth.shape)
             print("First values of midas output", rel_depth[0,:3,:3])
+            print("Mean of midas output", rel_depth.mean())
 
             if not self.fetch_features:
                 return rel_depth
