@@ -85,6 +85,13 @@ class ZoeDepth(DepthModel):
 
         self.conv2 = nn.Conv2d(btlnck_features, btlnck_features,
                                kernel_size=1, stride=1, padding=0)  # btlnck conv
+        
+        print("Bit centers type:", bin_centers_type)
+        print("Bottleneck features:", btlnck_features)
+        print("Number of bins:", n_bins)
+        print("Min depth:", min_depth)
+        print("Max depth:", max_depth)
+        print("Number of attractors:", n_attractors)
 
         if bin_centers_type == "normed":
             SeedBinRegressorLayer = SeedBinRegressor
