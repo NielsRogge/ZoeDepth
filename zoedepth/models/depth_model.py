@@ -85,6 +85,9 @@ class DepthModel(nn.Module):
                 padding += [pad_h, pad_h]
             
             x = F.pad(x, padding, mode=padding_mode, **kwargs)
+
+        print("Shape of actual input:", x.shape)
+
         out = self._infer(x)
         if out.shape[-2:] != x.shape[-2:]:
             out = F.interpolate(out, size=(x.shape[2], x.shape[3]), mode=upsampling_mode, align_corners=False)
