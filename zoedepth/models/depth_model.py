@@ -103,7 +103,7 @@ class DepthModel(nn.Module):
         from torchvision.transforms import Compose, Resize, ToTensor, Normalize
 
         transform = Compose([
-            Resize((image_size, image_size)),
+            Resize((384, 384)),
             ToTensor(),
             Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ])
