@@ -92,6 +92,13 @@ class ZoeDepth(DepthModel):
         print("Min depth:", min_depth)
         print("Max depth:", max_depth)
         print("Number of attractors:", n_attractors)
+        print("Number of out features:", num_out_features)
+        print("Attractor alpha:", attractor_alpha)
+        print("Attractor gamma:", attractor_gamma)
+        print("Attractor kind:", attractor_kind)
+        print("Attractor type:", attractor_type)
+        print("Min temp:", min_temp)
+        print("Max temp:", max_temp)
 
         if bin_centers_type == "normed":
             SeedBinRegressorLayer = SeedBinRegressor
