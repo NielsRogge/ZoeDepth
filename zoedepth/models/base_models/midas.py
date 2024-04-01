@@ -216,6 +216,9 @@ class MidasCore(nn.Module):
         self.set_trainable(trainable)
         self.set_fetch_features(fetch_features)
 
+        print("Image size during prep for midas:", img_size)
+        print("Keep aspect ratio:", keep_aspect_ratio)
+
         self.prep = PrepForMidas(keep_aspect_ratio=keep_aspect_ratio,
                                  img_size=img_size, do_resize=kwargs.get('do_resize', True))
 

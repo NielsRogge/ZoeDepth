@@ -15,7 +15,7 @@ image = Image.open(requests.get(url, stream=True).raw)
 # resize to square (our HF beit implementation does not support arbitrary resolutions yet)
 image = image.resize((384, 384))
 
-depth = model.infer_pil(image)
+depth = model.infer_pil(image, pad_input=False, with_flip_aug=False)
 
 print("Shape of predicted depth:", depth.shape)
 
