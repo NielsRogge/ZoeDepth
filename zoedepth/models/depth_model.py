@@ -86,36 +86,24 @@ class DepthModel(nn.Module):
             
             x = F.pad(x, padding, mode=padding_mode, **kwargs)
 
-        from torchvision.transforms import Compose, Resize, ToTensor, Normalize
+        # from torchvision.transforms import Compose, Resize, ToTensor, Normalize
 
-        transform = Compose([
-            Resize((384, 384)),
-            ToTensor(),
-            Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        ])
+        # transform = Compose([
+        #     Resize((384, 384)),
+        #     ToTensor(),
+        #     Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+        # ])
         
-        from PIL import Image
-        import requests
+        # from PIL import Image
+        # import requests
 
-        url = 'http://images.cocodataset.org/val2017/000000039769.jpg'
-        image = Image.open(requests.get(url, stream=True).raw)
+        # url = 'http://images.cocodataset.org/val2017/000000039769.jpg'
+        # image = Image.open(requests.get(url, stream=True).raw)
 
-        x = transform(image).unsqueeze(0)
+        # x = transform(image).unsqueeze(0)
 
-        print("Inserting cats image...", x.shape)
-        print("Shape of actual input:", x.shape)
-
-        # torch.save(x, "zoedepth_pixel_values.pt")
-
-        # # push to HF hub
-        # from huggingface_hub import HfApi
-        # api = HfApi()
-        # api.upload_file(
-        #     path_or_fileobj="zoedepth_pixel_values.pt",
-        #     path_in_repo="zoedepth_pixel_values.pt",
-        #     repo_id="nielsr/test-image",
-        #     repo_type="dataset",
-        # )
+        # print("Inserting cats image...", x.shape)
+        # print("Shape of actual input:", x.shape)
 
         out = self._infer(x)
         if out.shape[-2:] != x.shape[-2:]:
