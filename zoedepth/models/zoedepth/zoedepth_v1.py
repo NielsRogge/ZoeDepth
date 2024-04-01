@@ -160,9 +160,9 @@ class ZoeDepth(DepthModel):
         print("Shape of relative depth:", rel_depth.shape)
         print("Length of out:", len(out))
 
-        for i in out:
-            print(f"Shape of out feature {i}:", i.shape)
-            # print("First values:", i[0,0,:3,:3])
+        for idx, i in enumerate(out):
+            print(f"Shape of out feature {idx}:", i.shape)
+            print("First values:", i[0,0,:3,:3])
 
         outconv_activation = out[0]
         btlnck = out[1]
