@@ -156,7 +156,8 @@ class ZoeDepth(DepthModel):
         self.orig_input_width = w
         self.orig_input_height = h
         rel_depth, out = self.core(x, denorm=denorm, return_rel_depth=True)
-        # print("output shapes", rel_depth.shape, out.shape)
+
+        print("output shapes", rel_depth.shape, out.shape)
 
         outconv_activation = out[0]
         btlnck = out[1]
