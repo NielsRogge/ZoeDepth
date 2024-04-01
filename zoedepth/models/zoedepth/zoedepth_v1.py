@@ -213,6 +213,7 @@ class ZoeDepth(DepthModel):
 
         print("Shape of metric depth:", out.shape)
         print("Mean of metric depth:", out.mean())
+        print("First values of metric depth:", out[0,0,:3,:3])
 
         # Structure output dict
         output = dict(metric_depth=out)
