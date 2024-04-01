@@ -12,6 +12,8 @@ model = torch.hub.load('NielsRogge/ZoeDepth:understanding_zoedepth', "ZoeD_N", p
 
 url = 'http://images.cocodataset.org/val2017/000000039769.jpg'
 image = Image.open(requests.get(url, stream=True).raw)
+# resize to square (our HF beit implementation does not support arbitrary resolutions yet)
+image = image.resize((384, 384))
 
 depth = model.infer_pil(image)
 

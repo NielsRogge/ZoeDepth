@@ -80,30 +80,13 @@ class DepthModel(nn.Module):
             assert fh > 0 or fw > 0, "atlease one of fh and fw must be greater than 0"
             pad_h = int(np.sqrt(x.shape[2]/2) * fh)
             pad_w = int(np.sqrt(x.shape[3]/2) * fw)
+            print("Pad height:", pad_h)
+            print("Pad width:", pad_w)
             padding = [pad_w, pad_w]
             if pad_h > 0:
                 padding += [pad_h, pad_h]
             
             x = F.pad(x, padding, mode=padding_mode, **kwargs)
-
-        # from torchvision.transforms import Compose, Resize, ToTensor, Normalize
-
-        # transform = Compose([
-        #     Resize((384, 384)),
-        #     ToTensor(),
-        #     Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        # ])
-        
-        # from PIL import Image
-        # import requests
-
-        # url = 'http://images.cocodataset.org/val2017/000000039769.jpg'
-        # image = Image.open(requests.get(url, stream=True).raw)
-
-        # x = transform(image).unsqueeze(0)
-
-        # print("Inserting cats image...", x.shape)
-        # print("Shape of actual input:", x.shape)
 
         out = self._infer(x)
         if out.shape[-2:] != x.shape[-2:]:
