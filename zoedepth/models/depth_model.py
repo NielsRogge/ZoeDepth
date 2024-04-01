@@ -100,24 +100,6 @@ class DepthModel(nn.Module):
         #     repo_type="dataset",
         # )
 
-        from torchvision.transforms import Compose, Resize, ToTensor, Normalize
-
-        transform = Compose([
-            Resize((384, 384)),
-            ToTensor(),
-            Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        ])
-
-        from PIL import Image
-        import requests
-
-        url = 'http://images.cocodataset.org/val2017/000000039769.jpg'
-        image = Image.open(requests.get(url, stream=True).raw)
-
-        x = transform(image).unsqueeze(0)
-
-        print("Inserting cats image...", x.shape)
-
         out = self._infer(x)
         if out.shape[-2:] != x.shape[-2:]:
             out = F.interpolate(out, size=(x.shape[2], x.shape[3]), mode=upsampling_mode, align_corners=False)
