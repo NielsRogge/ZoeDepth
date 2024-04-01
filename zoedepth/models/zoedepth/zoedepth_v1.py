@@ -158,6 +158,7 @@ class ZoeDepth(DepthModel):
         rel_depth, out = self.core(x, denorm=denorm, return_rel_depth=True)
 
         print("Shape of relative depth:", rel_depth.shape)
+        print("Length of out:", len(out))
 
         outconv_activation = out[0]
         btlnck = out[1]
