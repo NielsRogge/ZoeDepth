@@ -162,7 +162,7 @@ class ZoeDepth(DepthModel):
 
         for idx, i in enumerate(out):
             print(f"Shape of out feature {idx}:", i.shape)
-            print("First values:", i[0,0,:3,:3])
+            # print("First values:", i[0,0,:3,:3])
 
         outconv_activation = out[0]
         btlnck = out[1]
@@ -210,6 +210,9 @@ class ZoeDepth(DepthModel):
         b_centers = nn.functional.interpolate(
             b_centers, x.shape[-2:], mode='bilinear', align_corners=True)
         out = torch.sum(x * b_centers, dim=1, keepdim=True)
+
+        print("Shape of metric depth:", out.shape)
+        print("Mean of metric depth:", out.mean())
 
         # Structure output dict
         output = dict(metric_depth=out)
