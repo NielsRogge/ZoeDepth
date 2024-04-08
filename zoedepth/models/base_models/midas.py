@@ -185,6 +185,7 @@ class PrepForMidas(object):
             if do_resize else nn.Identity()
 
     def __call__(self, x):
+        print("Shape of x before prep: ", x.shape)
         return self.normalization(self.resizer(x))
 
 
