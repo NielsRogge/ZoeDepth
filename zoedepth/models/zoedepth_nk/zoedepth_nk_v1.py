@@ -234,6 +234,10 @@ class ZoeDepthNK(DepthModel):
         # b_centers = nn.functional.interpolate(b_centers, x.shape[-2:], mode='bilinear', align_corners=True)
         out = torch.sum(x * b_centers, dim=1, keepdim=True)
 
+        print("Shape of metric depth:", out.shape)
+        print("Mean of metric depth:", out.mean())
+        print("First values of metric depth:", out[0,0,:3,:3])
+
         output = dict(domain_logits=domain_logits, metric_depth=out)
         if return_final_centers or return_probs:
             output['bin_centers'] = b_centers

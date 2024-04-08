@@ -8,7 +8,7 @@ from zoedepth.utils.misc import colorize
 torch.hub.help("NielsRogge/MiDaS:fix_beit_backbone", "DPT_BEiT_L_384", force_reload=True)
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-model = torch.hub.load('NielsRogge/ZoeDepth:understanding_zoedepth', "ZoeD_N", pretrained=True, force_reload=True).to(DEVICE).eval()
+model = torch.hub.load('NielsRogge/ZoeDepth:understanding_zoedepth', "ZoeD_NK", pretrained=True, force_reload=True).to(DEVICE).eval()
 
 url = 'http://images.cocodataset.org/val2017/000000039769.jpg'
 image = Image.open(requests.get(url, stream=True).raw)
