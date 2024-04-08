@@ -261,11 +261,17 @@ class MidasCore(nn.Module):
         return self
 
     def forward(self, x, denorm=False, return_rel_depth=False):
+        
+        print("Shape before prep: ", x.shape)
+        print("Mean of pixel values before prep:", x.mean())
+        
         with torch.no_grad():
             if denorm:
                 x = denormalize(x)
             x = self.prep(x)
-            # print("Shape after prep: ", x.shape)
+
+        print("Shape after prep: ", x.shape)
+        print("Mean of pixel values after prep:", x.mean())
 
         with torch.set_grad_enabled(self.trainable):
 
