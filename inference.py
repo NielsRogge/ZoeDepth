@@ -22,7 +22,7 @@ filepath = hf_hub_download(repo_id="shariqfarooq/ZoeDepth", filename="examples/p
 image = Image.open(filepath).convert("RGB")
 
 # we also specify pad=input=False when comparing logits
-depth = model.infer_pil(image, pad_input=False, with_flip_aug=False)
+depth = model.infer_pil(image, pad_input=True, with_flip_aug=False)
 
 print("Shape of predicted depth:", depth.shape)
 

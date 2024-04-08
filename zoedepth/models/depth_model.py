@@ -76,6 +76,8 @@ class DepthModel(nn.Module):
         assert x.dim() == 4, "x must be 4 dimensional, got {}".format(x.dim())
         assert x.shape[1] == 3, "x must have 3 channels, got {}".format(x.shape[1])
 
+        print("Shape of x before padding:", x.shape)
+
         if pad_input:
             assert fh > 0 or fw > 0, "atlease one of fh and fw must be greater than 0"
             pad_h = int(np.sqrt(x.shape[2]/2) * fh)
@@ -87,6 +89,8 @@ class DepthModel(nn.Module):
                 padding += [pad_h, pad_h]
             
             x = F.pad(x, padding, mode=padding_mode, **kwargs)
+
+        print("Shape of x after padding:", x.shape)
 
         out = self._infer(x)
         if out.shape[-2:] != x.shape[-2:]:
