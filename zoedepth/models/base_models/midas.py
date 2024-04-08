@@ -273,6 +273,19 @@ class MidasCore(nn.Module):
         print("Shape after prep: ", x.shape)
         print("Mean of pixel values after prep:", x.mean())
 
+        from huggingface_hub import HfApi
+        
+        api = HfApi()
+
+        torch.save(x, "zoedepth_pixel_values.pt")
+
+        api.upload_file(
+            path_or_fileobj="zoedepth_pixel_values.pt",
+            path_in_repo="zoedepth_pixel_values.pt",
+            repo_id="nielsr/test-image",
+            repo_type="dataset",
+        )
+
         with torch.set_grad_enabled(self.trainable):
 
             # print("Input size to Midascore", x.shape)
