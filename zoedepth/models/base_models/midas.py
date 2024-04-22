@@ -186,6 +186,20 @@ class PrepForMidas(object):
 
     def __call__(self, x):
         print("Shape of x before prep: ", x.shape)
+
+        from huggingface_hub import HfApi
+        
+        api = HfApi()
+
+        torch.save(x, "zoedepth_pixel_values_original.pt")
+
+        api.upload_file(
+            path_or_fileobj="zoedepth_pixel_values_original.pt",
+            path_in_repo="zoedepth_pixel_values_original.pt",
+            repo_id="nielsr/test-image",
+            repo_type="dataset",
+        )
+
         return self.normalization(self.resizer(x))
 
 
